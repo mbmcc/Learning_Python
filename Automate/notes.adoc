@@ -48,3 +48,21 @@ for k, v in dictionary.items():
     print(k, v)
 
 # Tuples are like lists but are immutable and use parenthisis instead of square brackets
+
+
+
+# WORK ON CH 4, Identity and the id() function. Pg 99
+# Then conways game of life on 102
+
+##---
+def eggs(someParameter):
+    someParameter.append('Hello')
+
+
+spam = [1, 2, 3]
+eggs(spam)
+print(spam)
+
+##---
+
+##
