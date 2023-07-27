@@ -1,3 +1,10 @@
+= Notes for 'Automate the Boring stuff with Python'
+
+
+== header template
+
+[, python]
+----
 #!/usr/bin/env python
 
 ###############
@@ -9,7 +16,21 @@
 # Created : Wed Jul 19 2023
 # Last modified : same
 ###############
+----
 
+== Part 1
+
+=== Ch 3 Arrays
+
+=== lists 
+
+Are:: collections of strings or numbers
+Use:: the square brackets ``[ ``]
+
+NOTE: Lists use parentheses. e.g. list['this', 'is', 'a', 'list']
+
+[, python]
+----
 spam = ['cat', 'bat', 'rat', 'elephant']
 
 for i in [0, 1, 2, 3]:
@@ -35,10 +56,15 @@ b = 'BBB'
 a, b = b, a
 
 spam = ['hello', 'hi', 'hey', 'howdy', 'heya']
+----
 
-# Dictionaries
-## Key : Value pairs
+=== Dictionaries
 
+Are:: Key : Value pairs
+Use:: the curly braces ``{ ``}
+
+[, python]
+----
 dictionary = {'name': 'matt', 'species': 'human', 'ancestory': 'Northern European'}
 
 list(dictionary.items())
@@ -47,14 +73,16 @@ list(dictionary.items())
 for k, v in dictionary.items():
     print(k, v)
 
-# Tuples are like lists but are immutable and use parenthisis instead of square brackets
+----
+NOTE: Tuples are like lists but are immutable and use parenthesis instead of square brackets, e.g. tuple('not', 'a', 'list')
 
+. WORK ON CH 4, Identity and the id() function. Pg 99
+. Then conways game of life on 102
 
+=== Ch 4
 
-# WORK ON CH 4, Identity and the id() function. Pg 99
-# Then conways game of life on 102
-
-##---
+[, python]
+----
 def eggs(someParameter):
     someParameter.append('Hello')
 
@@ -62,7 +90,256 @@ def eggs(someParameter):
 spam = [1, 2, 3]
 eggs(spam)
 print(spam)
+----
 
-##---
+To copy lists, not just copy a reference to the list use the copy.copy method
 
-##
+
+=== Game of Life
+
+Conway’s Game of Life is an example of cellular automata: a set of rules governing the behavior of a field made up of discrete cells. In practice, it creates a pretty animation to look at. You can draw out each step on graph paper, using the squares as cells. A filled-in square will be “alive” and an empty square will be “dead.” 
+If a living square has exactly two or three living neighbors, it continues to live on the next step. 
+If a dead square has exactly three living neighbors, it comes alive on the next step. Every other square dies or remains dead on the next step.
+
+[Example (Glider)]
+===
+
+.Round #
+|===
+| .|.|.|.|.|.|
+| .|.|.|.|.|.|
+| .|.|.|.|.|.|
+| .|.|.|.|.|.|
+| .|.|.|.|.|.|
+| .|.|.|.|.|.|
+|===
+
+.Round 1
+|===
+| .|.|.|.|.|.|
+| .|.|#|.|.|.|
+| .|.|.|#|.|.|
+| .|#|#|#|.|.|
+| .|.|.|.|.|.|
+| .|.|.|.|.|.|
+|===
+
+.Round 2
+|===
+| .|.|.|.|.|.|
+| .|.|.|.|.|.|
+| .|#|.|#|.|.|
+| .|.|#|#|.|.|
+| .|.|#|.|.|.|
+| .|.|.|.|.|.|
+|===
+
+.Round 3
+|===
+| .|.|.|.|.|.|
+| .|.|.|.|.|.|
+| .|.|.|#|.|.|
+| .|#|.|#|.|.|
+| .|.|#|#|.|.|
+| .|.|.|.|.|.|
+|===
+
+.Round 4
+|===
+| .|.|.|.|.|.|
+| .|.|.|.|.|.|
+| .|.|#|.|.|.|
+| .|.|.|#|#|.|
+| .|.|#|#|.|.|
+| .|.|.|.|.|.|
+|===
+
+===
+
+
+=== Ch 5. Data structures
+
+Data structures are lists of lists or lists of dictionaries or dictionaries of lists or dictionaries of dictionaries. 
+
+These are used to model different multi-dimensional properties of the program, like for example a tic-tac-toe board.
+
+- Make tic-tac-toe board program
+[, python]
+----
+>>> spam = {'name': 'Pooka', 'age': 5}
+>>> spam.setdefault('color', 'black')
+'black'
+>>> spam
+{'color': 'black', 'age': 5, 'name': 'Pooka'}
+>>> spam.setdefault('color', 'white')
+'black'
+>>> spam
+{'color': 'black', 'age': 5, 'name': 'Pooka'}
+----
+
+Practice Projects::
+- Fantasy Game inventory
+- Star Wars Dice sim
+
+
+
+NOTE: 
+====
+
+There are useful functions that can be used in the REPL to aid in looking at your program:
+
+'type()' shows the type of object presented .e.g. 'list', 'string', 'dict' 
+'pprint.pprint' outputs the contents one per line
+
+====
+
+
+=== Ch 6. String handling
+
+
+=== string methods:
+
+`isalpha()` only letters
+`isalnum()` letters and numbers only
+`isdecimal()` numbers only
+`isspace()` whitespace only
+`istitle()` Starts upper and then lower
+
+string.startswith
+string.endswith
+
+','.join(['l','i','s','t']) would return list (joining each comma value)
+string.split splits on space
+string.ljust(number) left jstified (chars)
+string.rjust(number) right jausttified (chars)
+string.center(number) puts string in center of number chars
+string.strip('chars') remove 'chars', default whitespace
+string.lstrip remove left
+string.rstrip remove right
+string.replace('find', 'replace')
+string.lower() all string character are in lower case
+string.upper()
+string.titlecase()
+
+NOTE: Install `pyperclip` module to allow python script to access system clipboard
+
+pyperclip.copy() sends to clipboard
+pyperclip.paste() gets from clipboard
+
+=== string formatting / string interperlation
+
+e.g.:
+[python]
+----
+name = 'Alice'
+place = 'Door Mouse\'s House'
+time = '13 in the morning'
+food = 'cake'
+
+print('''
+Hello %s,
+
+you are invited to a party at %s at %s. 
+
+Please bring %s.
+
+Regards,
+Cheshire
+''' % (name, place, time, food))
+----
+`%s` is a conversion specifier
+
+
+== Part 2
+
+
+=== Ch 7 : Regular Expressions
+
+==== Udemy - Section 10
+
+* `+re+` is the regular expression module
+* `+var.compile+` is used to capture / set the regular expression e.g. 
+ `+re.compile(r'\a.* \d\d\d')+`
+* `+var.search('text')+` to search using the previously created expression, creates a 'match object' returns first matched
+* `+var.findall('text')+` returns all matched
+* `+match_object.group()+` returns the matched string
+
+* parenthisis in re.compile can be called with match_object.group(parenthisis group)
+* regex `+(/d{3,5})+` would match a 5 length digits number (greedy)
+* regex `+(/d{3,5}?)+` would match a 3 length digits number (non-greedy)
+
+=== Udemy - section 11 - File handling
+
+os.path.join # joins each of the list items to create a file path appropriate for the os
+
+os.getcwd('') # gets the current working directory
+os.chdir('dir') # change the current working directory
+os.path.abspath('file') # returns the absolute path of the file provided
+os.path.dirname('full/file/path/file.txt') # returns full path to current dir i.e. 'path'
+os.path.basename('full/file/path/file.txt') # returns file.txt
+os.path.exists('full/file/path/file.txt') # returns true if file exists
+os.path.isfile('full/file/path/file.txt') # returns true if file exists
+os.path.isdir('full/file/path') # returns true if dir exists
+os.listdir('full/file/path') # returns list of content names
+
+=== Ch 8 Input valication
+
+==== Udemy Section 31
+
+
+opening files 
+
+[, python]
+----
+# read only by default
+hello_file = open('path/to/file.txt')
+hello_file.read()
+#outputs content
+
+# for writing
+
+hello_file = open('path/to/file.txt', 'w')
+hello_file.write('some new text\n') # Overwrites file contents with string
+hello_file.close()
+hello_file = open('path/to/file.txt', 'a') # appends text
+hello_file.write('some more new text') # Appends file contents with string
+hello_file.close()
+hello_file.write('some old text\n') # Overwrites file contents with string
+----
+
+
+shelving data - A way of storing variables and their content to disk
+
+
+[, python]
+----
+import shelve
+shelf_file = shelve.open('mydata')
+shelf_file['cats'] = ['Zophie', 'Pooka', 'Simon', 'Fat-tail', 'Cleo']
+shelf_file.close()
+
+
+shelf_file = shelve.open('mydata')
+shelf_file['cats']
+# Returns ['Zophie', 'Pooka', 'Simon', 'Fat-tail', 'Cleo']
+shelf_file.close()
+----
+
+
+
+'shelf_file.keys()' : displays key contents of shelve
+Shelf files work like dictionaries
+
+
+
+==== Udemy Section 32 : using the shell utilities
+
+
+[,python]
+----
+import shutil
+shutil.copy('path/to/file.txt', 'path/to/file_copy.txt') # copy file
+# or
+shutil.copy('path/to/file.txt', 'path/to/new_folder/') # copy to folder
+shutil.copytree('path/to/new_folder', 'path/to/backup') # recursive copy
+----
